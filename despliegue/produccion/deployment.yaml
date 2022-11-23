@@ -1,0 +1,163 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: web-call-back
+  annotations:
+    description: "Template para generacion del servicio de web-call-back para Telefonica"
+    iconClass: "icon-rh-integration"
+objects:
+  - apiVersion: apps.openshift.io/v1
+    kind: DeploymentConfig
+    metadata:
+      labels:
+        app: web-call-back
+        app.kubernetes.io/component: web-call-back
+        app.kubernetes.io/instance: web-call-back
+      name: web-call-back
+      namespace: NAMESPACE
+    spec:
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        app: web-call-back
+        deploymentconfig: web-call-back
+      strategy:
+        activeDeadlineSeconds: 21600
+        resources: { }
+        rollingParams:
+          intervalSeconds: 1
+          maxSurge: 25%
+          maxUnavailable: 25%
+          timeoutSeconds: 600
+          updatePeriodSeconds: 1
+        type: Rolling
+      template:
+        metadata:
+          annotations:
+            openshift.io/generated-by: OpenShiftNewApp
+            sidecar.istio.io/inject: "true"
+          labels:
+            app: web-call-back
+            deploymentconfig: web-call-back
+        spec:
+          containers:
+            - name: web-call-back
+              env:
+                - name: SPRING_APPLICATION_JSON
+                  value: '{"server":{"undertow":{"io-threads":10, "worker-threads":80 }}}'
+                - name: JAVA_OPTIONS
+                  value: -Xms128m -Xmx256m -Dfile.encoding=ISO-8859-1
+              image: image-registry.openshift-image-registry.svc:5000/rcs-google/web-call-back:latest
+              imagePullPolicy: Always
+              envFrom:
+                - configMapRef:
+                    name: configmap-web-call-back
+                - secretRef:
+                    name: secret-web-call-back
+              resources:
+                limits:
+                  cpu: 200m
+                  memory: 512Mi
+                requests:
+                  cpu: 10m
+                  memory: 10Mi
+              readinessProbe:
+                httpGet:
+                  path: /actuator/
+                  port: 8087
+                  scheme: HTTP
+                failureThreshold: 3
+                initialDelaySeconds: 20
+                periodSeconds: 10
+                successThreshold: 1
+                timeoutSeconds: 120
+              livenessProbe:
+                httpGet:
+                  path: /actuator/
+                  port: 8087
+                  scheme: HTTP
+                failureThreshold: 2
+                initialDelaySeconds: 60
+                periodSeconds: 10
+                successThreshold: 1
+                timeoutSeconds: 120
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: { }
+          terminationGracePeriodSeconds: 30
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      labels:
+        app: web-call-back
+        app.kubernetes.io/component: web-call-back
+        app.kubernetes.io/instance: web-call-back
+      name: web-call-back
+      namespace: NAMESPACE
+    spec:
+      ports:
+        - name: http-web
+          port: 8080
+          protocol: TCP
+      selector:
+        deploymentconfig: web-call-back
+      sessionAffinity: None
+      type: ClusterIP
+  - apiVersion: autoscaling/v2beta2
+    kind: HorizontalPodAutoscaler
+    metadata:
+      labels:
+        app: web-call-back
+      name: web-call-back
+      namespace: NAMESPACE
+    spec:
+      scaleTargetRef:
+        apiVersion: apps.openshift.io/v1
+        kind: DeploymentConfig
+        name: web-call-back
+      minReplicas: 1
+      maxReplicas: 2
+      metrics:
+        - type: Resource
+          resource:
+            name: cpu
+            target:
+              averageUtilization: 80
+              type: Utilization
+  - kind: ConfigMap
+    apiVersion: v1
+    metadata:
+      name: configmap-web-call-back
+    data:
+      server.port: '8080'
+      controller.properties.base-path: 'telefonica/v1/web-call-back'
+  - apiVersion: networking.istio.io/v1beta1
+    kind: DestinationRule
+    metadata:
+      name: web-call-back
+      namespace: NAMESPACE
+    spec:
+      host: web-call-back
+      trafficPolicy:
+        tls:
+          mode: ISTIO_MUTUAL
+  - apiVersion: networking.istio.io/v1beta1
+    kind: VirtualService
+    metadata:
+      name: web-call-back
+      namespace: NAMESPACE
+    spec:
+      gateways:
+        - istio-system/wildcard-gateway
+      hosts:
+        - '*'
+      http:
+        - match:
+            - uri:
+                regex: /telefonica/v1/web-call-back/*
+          route:
+            - destination:
+                host: web-call-back
+                port:
+                  number: 8080
