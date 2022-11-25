@@ -9,8 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import co.com.telefonica.ws.dto.TelfEntityDTO;
-
 //@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class EntityBLTest {
 	
