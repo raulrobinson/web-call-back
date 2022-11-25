@@ -1,10 +1,10 @@
 {
 	"Projects":	[
 		{
-			"name":	"telco-micro-java-arch-restblank",
+			"name":	"web-call-back",
 			"node": "java-mvn-oc-node1",
 			"technology": "Services",
-            "repositoryURL": "https://git.nh.inet/gitea/templates/telco-micro-java-arch-restblank.git",
+            "repositoryURL": "https://git.nh.inet/gitea/telco-micro-java/web-call-back.git",
             "mainProjectPath": "",
             "scriptBuildTest":[
                 "mvn -v",
@@ -18,7 +18,7 @@
             ],
             "sonarWithOSPlugin": false,
             "sonarEnvironment": "sonarqube-interno",
-            "scriptSonar": "mvn sonar:sonar -Dsonar.projectKey=telco-micro-java-arch-restblank",
+            "scriptSonar": "mvn sonar:sonar -Dsonar.projectKey=web-call-back",
             "scriptTestReportPath": "",
             "unitTestProjectPath": "",
 			"scriptUnitTest":[
@@ -28,7 +28,7 @@
 				"lastDelivery": "",
 				"lastAnalysis": "https://api.kiuwan.com/deliveries/last_analysis?application=Microservicios.Colombia",
 				"baseAnalysis": "",
-                "branch": "telco-micro-java-arch-restblank"
+                "branch": "web-call-back"
 			},
             "nexus":{
             	"instance":"",
@@ -36,7 +36,7 @@
                 "packageType": "app",
                 "packageExtension": "jar",
             	"packagePath":"/target/",
-                "packageName": "telco-micro-java-arch-restblank"
+                "packageName": "web-call-back"
             },
 			"deployType": "OCP",
             "deployWithDocker": true,
@@ -44,14 +44,14 @@
 				"dev":{
 					"hasEnvironment": true,
                     "namespace": "gobierno",
-                    "uri-base": "/telefonica/templates/v1/telco-micro-java-arch-restblank/.*",
+                    "uri-base": "/telefonica/templates/v1/web-call-back/.*",
                     "appName": "telco-micro-java-arch-restblank",
                     "template": "deployment.yaml"
 				},
 				"prd":{
 					"hasEnvironment": false,
                     "namespace": "gobierno",
-                    "uri-base": "/telefonica/templates/v1/telco-micro-java-arch-restblank/.*",
+                    "uri-base": "/telefonica/templates/v1/web-call-back/.*",
                     "appName": "telco-micro-java-arch-restblank",
                     "template": "deployment.yaml"
 				}

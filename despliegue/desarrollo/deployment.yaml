@@ -14,7 +14,7 @@ objects:
         app.kubernetes.io/component: web-call-back
         app.kubernetes.io/instance: web-call-back
       name: web-call-back
-      namespace: OPENSHIFT_NAMESPACE_HERE
+      namespace: genesys
     spec:
       replicas: 1
       revisionHistoryLimit: 10
@@ -47,7 +47,7 @@ objects:
                   value: '{"server":{"undertow":{"io-threads":10, "worker-threads":80 }}}'
                 - name: JAVA_OPTIONS
                   value: -Xms128m -Xmx256m -Dfile.encoding=ISO-8859-1
-              image: image-registry.openshift-image-registry.svc:5000/rcs-google/web-call-back:latest
+              image: image-registry.openshift-image-registry.svc:5000/genesys/web-call-back:latest
               imagePullPolicy: Always
               envFrom:
                 - configMapRef:
@@ -94,7 +94,7 @@ objects:
         app.kubernetes.io/component: web-call-back
         app.kubernetes.io/instance: web-call-back
       name: web-call-back
-      namespace: OPENSHIFT_NAMESPACE_HERE
+      namespace: genesys
     spec:
       ports:
         - name: http-web
@@ -110,7 +110,7 @@ objects:
       labels:
         app: web-call-back
       name: web-call-back
-      namespace: OPENSHIFT_NAMESPACE_HERE
+      namespace: genesys
     spec:
       scaleTargetRef:
         apiVersion: apps.openshift.io/v1
@@ -136,7 +136,7 @@ objects:
     kind: DestinationRule
     metadata:
       name: web-call-back
-      namespace: OPENSHIFT_NAMESPACE_HERE
+      namespace: genesys
     spec:
       host: web-call-back
       trafficPolicy:
@@ -146,7 +146,7 @@ objects:
     kind: VirtualService
     metadata:
       name: web-call-back
-      namespace: OPENSHIFT_NAMESPACE_HERE
+      namespace: genesys
     spec:
       gateways:
         - istio-system/wildcard-gateway
