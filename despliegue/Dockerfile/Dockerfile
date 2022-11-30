@@ -7,5 +7,6 @@
 # ------------------------------------------------------------------------
 
 FROM openjdk:11-jre-slim-buster
-COPY ./src/telco-micro-java-arch-restblank.jar /opt/microservice/telco-micro-java-arch-restblank.jar
-ENTRYPOINT ["java","-jar","/opt/microservice/telco-micro-java-arch-restblank.jar"]
+RUN apt-get update && apt-get install curl -y
+COPY ./src/web-call-back.jar /opt/microservice/web-call-back.jar
+ENTRYPOINT ["java","-Duser.timezone=CO","-jar","/opt/microservice/web-call-back.jar"]

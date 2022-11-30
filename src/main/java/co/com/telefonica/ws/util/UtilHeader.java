@@ -19,15 +19,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * NO BORRAR...
- * 
- * Clase encargada de validar los Header de un servicio REST.
- * 
- * @autor: COE-Arquitectura-Telefonica
- * @date: 19-10-2020
- * @version 1.0.0
- */
 @Slf4j
 @Getter
 @Setter
@@ -40,13 +31,6 @@ public class UtilHeader {
 
 	private TelfHeaderInEntity headerIn = null;
 
-	/**
-	 * 
-	 * 
-	 * @param headers
-	 * @return headerIn
-	 * @throws IOException
-	 * */
 	public TelfHeaderInEntity processHeader(HttpHeaders headers) throws IOException {
 		headerIn = new TelfHeaderInEntity(headers);
 		if (validateHeader(headerIn)) {
@@ -56,12 +40,6 @@ public class UtilHeader {
 		}
 	}
 
-	/**
-	 * 
-	 * @param headers
-	 * @return
-	 * @throws IOException
-	 */
 	public TelfHeaderOutEntity processHeaderOut(HttpHeaders headers) throws IOException {
 		headerIn = new TelfHeaderInEntity(headers);
 
@@ -72,26 +50,13 @@ public class UtilHeader {
 		}
 	}
 
-	/**
-	 * Establece el mediaType con el que se va a responder la petición. Por defecto
-	 * se establece application/json
-	 * 
-	 * @param headers
-	 * @return
-	 */
 	public static MediaType getMediaType(HttpHeaders headers) {
-		String mediaType = SecurityUtils.blindParameter(headers.getFirst("mediaType"));
+		String mediaType = TelcoSecurityUtils.blindParameter(headers.getFirst("mediaType"));
 
 		return new MediaType((mediaType.equals(MediaType.APPLICATION_XML_VALUE)) ? MediaType.APPLICATION_XML_VALUE
 				: MediaType.APPLICATION_JSON_VALUE);
 	}
 
-	/**
-	 * Este metodo es el encargado de validar los headers
-	 * 
-	 * @param headerIn, objeto header a validar
-	 * @return boolean, verdadero, si el header no cumple con las especificaciones
-	 */
 	public boolean validateHeader(TelfHeaderInEntity headerIn) {
 
 		if (headerIn == null) {
@@ -104,25 +69,10 @@ public class UtilHeader {
 
 	}
 
-	/**
-	 * Este método es el encargado de validar si cumple con un minimo esperado en
-	 * tamaño y que no sea null
-	 * 
-	 * @param source, elemento del header
-	 * @return boolean, que indica true, si no cumple con las validaciones false en
-	 *         caso contrario
-	 */
 	public static boolean validateField(String source) {
 		return !(source == null || source.isEmpty() || source.length() > TAM_SOURCE_FIELD);
 	}
 
-	/**
-	 * Metodo encargado de validar que el formato de fecha es el espérado
-	 * 
-	 * @param strDate, parametro fecha
-	 * @return boolean, que indica true, si no cumple con las validaciones false en
-	 *         caso contrario
-	 */
 	public static boolean validateTimeStamp(String strDate) {
 		if (validateField(strDate)) {
 			/*
@@ -152,23 +102,11 @@ public class UtilHeader {
 
 	}
 
-	/**
-	 * metodo encargado de validar que se cumple con el formato esperado de ExecId
-	 * 
-	 * @param source, parametro donde se contempla el valor de ExecId
-	 * @return boolean, que indica true, si no cumple con las validaciones false en
-	 *         caso contrario
-	 */
 	public static boolean validateRegExExecId(String source) {
 
 		return !(Pattern.matches(REGEX_FORMAT, source)) || !(validateField(source));
 	}
 
-	/**
-	 * 
-	 * @param headers
-	 * @return
-	 */
 	public HttpHeaders buildHeaderOut(HttpHeaders headers) {
 		HttpHeaders responseHeaders = new HttpHeaders();
 
@@ -177,18 +115,13 @@ public class UtilHeader {
 				if (key.equals(MSGTYPE))
 					responseHeaders.add(MSGTYPE, "RESPONSE");
 
-				responseHeaders.add(key, SecurityUtils.blindParameter(value));
+				responseHeaders.add(key, TelcoSecurityUtils.blindParameter(value));
 			}
 		});
 
 		return responseHeaders;
 	}
 
-	/**
-	 * 
-	 * @param headers
-	 * @return
-	 */
 	public HttpHeaders buildHeaderOut(TelfHeaderOutEntity headers) {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		headers.updateTimeStamp();
@@ -201,11 +134,6 @@ public class UtilHeader {
 		return responseHeaders;
 	}
 
-	/**
-	 * 
-	 * @param headers
-	 * @return
-	 */
 	public HttpHeaders buildHeaderOut() {
 		HttpHeaders responseHeaders = new HttpHeaders();
 
@@ -216,12 +144,6 @@ public class UtilHeader {
 		return responseHeaders;
 	}
 
-	/**
-	 * Método para obtener el valor del timestamp, es decir la fecha y hora de
-	 * respuesta del servicio en formato YYYY-MM-DDThh:mm:ss[Z|(+|-)hh:mm]
-	 * 
-	 * @return
-	 */
 	public String getTimestampValue() {
 		ZoneId zoneIdCo = ZoneId.of("America/Bogota");
 		ZonedDateTime now = ZonedDateTime.now(zoneIdCo);

@@ -43,16 +43,16 @@
 			"deploy":{
 				"dev":{
 					"hasEnvironment": true,
-                    "namespace": "gobierno",
+                    "namespace": "genesys",
                     "uri-base": "/telefonica/templates/v1/web-call-back/.*",
-                    "appName": "telco-micro-java-arch-restblank",
+                    "appName": "web-call-back",
                     "template": "deployment.yaml"
 				},
 				"prd":{
 					"hasEnvironment": false,
-                    "namespace": "gobierno",
+                    "namespace": "genesys",
                     "uri-base": "/telefonica/templates/v1/web-call-back/.*",
-                    "appName": "telco-micro-java-arch-restblank",
+                    "appName": "web-call-back",
                     "template": "deployment.yaml"
 				}
 			}
