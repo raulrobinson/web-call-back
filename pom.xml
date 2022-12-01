@@ -12,7 +12,7 @@
 	<artifactId>web-call-back</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>web-call-back</name>
-	<description>Microservicio que genera una llamada de un asesor al cliente desde Genesys</description>
+	<description>Microservicio que genera una llamada de un asesor al cliente desde Genesys.</description>
 	<properties>
 		<java.version>11</java.version>
 		<cloud.version>2020.0.6</cloud.version>
