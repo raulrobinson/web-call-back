@@ -52,8 +52,6 @@ objects:
               envFrom:
                 - configMapRef:
                     name: configmap-web-call-back
-                - secretRef:
-                    name: secret-web-call-back
               resources:
                 limits:
                   cpu: 200m
