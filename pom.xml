@@ -21,7 +21,6 @@
 	<properties>
 		<java.version>11</java.version>
 		<cloud.version>2020.0.6</cloud.version>
-		<project-name>ms-gobierno-example-entity</project-name>
 		<spring-boot-admin.version>2.3.0</spring-boot-admin.version>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
@@ -176,7 +175,7 @@
 		</dependencies>
 	</dependencyManagement>
 	<build>
-		<finalName>${project-name}</finalName>
+		<finalName>${project.name}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -193,13 +192,13 @@
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.2.3</version>
 				<configuration>
-					<imageName>${docker.image.prefix}/${project-name}</imageName>
+					<imageName>${docker.image.prefix}/${project.name}</imageName>
 					<dockerDirectory>${project.build.directory}/docker</dockerDirectory>
 					<resources>
 						<resource>
 							<targetPath>/</targetPath>
 							<directory>${project.build.directory}</directory>
-							<include>${project-name}.jar</include>
+							<include>${project.name}.jar</include>
 						</resource>
 					</resources>
 				</configuration>
