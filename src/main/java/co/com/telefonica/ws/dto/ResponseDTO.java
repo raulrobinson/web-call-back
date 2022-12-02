@@ -1,4 +1,4 @@
-package co.com.telefonica.ws.dto.response;
+package co.com.telefonica.ws.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -29,5 +29,4 @@ public class ResponseDTO {
 
     @JsonProperty("_dialog_id")
     private String dialogId;
-
 }

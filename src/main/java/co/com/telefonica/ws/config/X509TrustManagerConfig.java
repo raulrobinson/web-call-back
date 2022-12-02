@@ -10,6 +10,7 @@ import java.security.cert.X509Certificate;
 @Configuration
 @Slf4j
 public class X509TrustManagerConfig implements X509TrustManager {
+
     @Override
     public void checkClientTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
         log.info("checkClientTrusted ");

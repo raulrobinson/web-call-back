@@ -1,30 +1,34 @@
 package co.com.telefonica.ws.ui.controller;
 
 import co.com.telefonica.ws.businesslogic.ISendNotificationFactory;
-import co.com.telefonica.ws.dto.request.RequestDTO;
-import co.com.telefonica.ws.dto.response.ResponseOutDTO;
+import co.com.telefonica.ws.dto.RequestDTO;
+import co.com.telefonica.ws.dto.ResponseOutDTO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "${controller.properties.base-path}")
+@RequestMapping(path = "${controller.properties.base-path}", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CallbackController {
 
     private final ISendNotificationFactory sendNotification;
 
     @PostMapping
-    public ResponseEntity<ResponseOutDTO> sendCallback(@RequestBody RequestDTO request) {
+    public ResponseEntity<ResponseOutDTO> sendCallback(
+            @RequestBody RequestDTO request) {
         if (null == request) {
             var responseError = ResponseOutDTO.builder()
                     .code("406 NOT_ACCEPTABLE")
                     .message("Error en la solicitud.")
-                    .text("Datos invalidos.")
+                    .content("Datos invalidos.")
                     .build();
             return new ResponseEntity<>(responseError, HttpStatus.NOT_ACCEPTABLE);
         }

@@ -1,9 +1,9 @@
 package co.com.telefonica.ws.businesslogic.impl;
 
 import co.com.telefonica.ws.businesslogic.ISendNotificationFactory;
-import co.com.telefonica.ws.dto.request.RequestDTO;
-import co.com.telefonica.ws.dto.response.ResponseDTO;
-import co.com.telefonica.ws.dto.response.ResponseOutDTO;
+import co.com.telefonica.ws.dto.RequestDTO;
+import co.com.telefonica.ws.dto.ResponseDTO;
+import co.com.telefonica.ws.dto.ResponseOutDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,8 +33,9 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
             var responseFail = ResponseOutDTO.builder()
                     .code("406 NOT_ACCEPTABLE")
                     .message("Error en la solicitud.")
-                    .text("Los datos suministrados no se ajustan a la definicion.")
+                    .content("Los datos suministrados no se ajustan a la definicion.")
                     .build();
+
             return new ResponseEntity<>(responseFail, HttpStatus.NOT_ACCEPTABLE);
         }
 
@@ -44,8 +45,8 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
 
         var responseF = ResponseOutDTO.builder()
                 .code(responseS.getStatusCode().toString())
-                .message("Numero: " + request.getCustomerNumber() + ", en breves instantes uno de nuestros asesores le contactara.")
-                .text(responseS)
+                .message(request.getCustomerNumber() + ", en breves instantes uno de nuestros asesores le contactara.")
+                .content(responseS)
                 .build();
 
         return new ResponseEntity<>(responseF, HttpStatus.OK);

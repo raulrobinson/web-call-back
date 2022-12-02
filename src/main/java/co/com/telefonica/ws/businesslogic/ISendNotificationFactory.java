@@ -1,7 +1,7 @@
 package co.com.telefonica.ws.businesslogic;
 
-import co.com.telefonica.ws.dto.request.RequestDTO;
-import co.com.telefonica.ws.dto.response.ResponseOutDTO;
+import co.com.telefonica.ws.dto.RequestDTO;
+import co.com.telefonica.ws.dto.ResponseOutDTO;
 import org.springframework.http.ResponseEntity;
 
 public interface ISendNotificationFactory {

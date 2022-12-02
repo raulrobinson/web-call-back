@@ -1,4 +1,4 @@
-package co.com.telefonica.ws.dto.response;
+package co.com.telefonica.ws.dto;
 
 import lombok.*;
 
@@ -10,5 +10,5 @@ import lombok.*;
 public class ResponseOutDTO {
     private String code;
     private String message;
-    private Object text;
+    private Object content;
 }

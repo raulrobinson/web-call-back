@@ -13,8 +13,8 @@ import javax.net.ssl.TrustManager;
 @Slf4j
 public class SSLCertConfig {
 
-    @SneakyThrows
     @Bean
+    @SneakyThrows
     public Boolean disableSSLValidation() {
         final SSLContext sslContext = SSLContext.getInstance("TLS");
 

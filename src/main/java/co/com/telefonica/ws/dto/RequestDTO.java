@@ -1,21 +1,19 @@
-package co.com.telefonica.ws.dto.request;
+package co.com.telefonica.ws.dto;
 
 import com.fasterxml.jackson.annotation.JsonSetter;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 
 @Setter
 @Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class RequestDTO {
     @NotNull
     @JsonSetter("_customer_number")
-    private int customerNumber;
+    private Long customerNumber;
 
     @Override
     public String toString() {

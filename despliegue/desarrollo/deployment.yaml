@@ -49,9 +49,6 @@ objects:
                   value: -Xms128m -Xmx256m -Dfile.encoding=ISO-8859-1
               image: image-registry.openshift-image-registry.svc:5000/genesys/web-call-back:latest
               imagePullPolicy: Always
-              envFrom:
-                - configMapRef:
-                    name: configmap-web-call-back
               resources:
                 limits:
                   cpu: 200m
@@ -59,26 +56,6 @@ objects:
                 requests:
                   cpu: 10m
                   memory: 10Mi
-              readinessProbe:
-                httpGet:
-                  path: /actuator/
-                  port: 8087
-                  scheme: HTTP
-                failureThreshold: 3
-                initialDelaySeconds: 20
-                periodSeconds: 10
-                successThreshold: 1
-                timeoutSeconds: 120
-              livenessProbe:
-                httpGet:
-                  path: /actuator/
-                  port: 8087
-                  scheme: HTTP
-                failureThreshold: 2
-                initialDelaySeconds: 60
-                periodSeconds: 10
-                successThreshold: 1
-                timeoutSeconds: 120
           dnsPolicy: ClusterFirst
           restartPolicy: Always
           schedulerName: default-scheduler
@@ -123,13 +100,6 @@ objects:
             target:
               averageUtilization: 80
               type: Utilization
-  - kind: ConfigMap
-    apiVersion: v1
-    metadata:
-      name: configmap-web-call-back
-    data:
-      server.port: '8080'
-      controller.properties.base-path: 'telefonica/v1/web-call-back'
   - apiVersion: networking.istio.io/v1beta1
     kind: DestinationRule
     metadata:
