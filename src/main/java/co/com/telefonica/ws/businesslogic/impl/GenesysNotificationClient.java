@@ -1,6 +1,7 @@
 package co.com.telefonica.ws.businesslogic.impl;
 
 import co.com.telefonica.ws.businesslogic.ISendNotificationFactory;
+import co.com.telefonica.ws.dto.RequestDTO;
 import co.com.telefonica.ws.dto.request.InDTO;
 import co.com.telefonica.ws.dto.request.InSentDTO;
 import co.com.telefonica.ws.dto.response.SentGenesysDTO;
@@ -34,7 +35,7 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
     private final SimpleDateFormat dateFmt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
     @Override
-    public ResponseEntity<OutSentDTO> sendNotify(InDTO request) {
+    public ResponseEntity<OutSentDTO> sendNotify(RequestDTO request) {
 
         var headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -66,6 +67,10 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
             log.info("gvpz_tipo_cliente: Email customer not found");
             return telcoConstants.responseFail("406", errorMessage, "gvpz_tipo_cliente: Email customer not found..");
 
+        } else if (request.getGvpzSuspension().isBlank()) {
+            log.info("gvpz_suspension: Reason for procedure");
+            return telcoConstants.responseFail("406", errorMessage, "gvpz_suspension: Reason for procedure not found..");
+
         } else if (request.getRespuestaOne().isBlank()) {
             log.info("respuesta_1: Fija or Movil not found");
             return telcoConstants.responseFail("406", errorMessage, "respuesta_1: Fija or Movil not found..");
@@ -77,9 +82,8 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
             if (customerNumber.length() < 10) {
                 return telcoConstants.responseFail("406", "Request Failed..", "Phone number invalid length..");
             }
-            customerNumber = "03" + customerNumber;
         } else if (Objects.equals(request.getRespuestaOne(), "Fija")){
-            customerNumber = "09" + customerNumber;
+            customerNumber = String.valueOf(request.getCustomerNumber());
         } else {
             return telcoConstants.responseFail("406", "Request Failed..", "Phone format number invalid..");
         }
@@ -99,11 +103,11 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
         return new ResponseEntity<>(resOut, HttpStatus.OK);
     }
 
-    private InSentDTO buildRequest(InDTO request) {
+    private InSentDTO buildRequest(RequestDTO request) {
         Date dat = new Date();
         var reqBuild = new InSentDTO();
         reqBuild.setCustomerNumber(request.getCustomerNumber());
-        reqBuild.setGvpzSuspension("Cancelacion");
+        reqBuild.setGvpzSuspension("Cancelacion"); // ************************ refactorizar Cancelacion o Pre a Post.
         reqBuild.setGvpzIvrNavegacion("Tramite sobre mis productos");
         reqBuild.setFijaAgent("WCB_UNF");
         reqBuild.setRespuestaOne(request.getRespuestaOne());

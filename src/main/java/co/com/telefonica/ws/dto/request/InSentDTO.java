@@ -1,6 +1,5 @@
 package co.com.telefonica.ws.dto.request;
 
-import com.fasterxml.jackson.annotation.JsonSetter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,46 +15,52 @@ import javax.validation.constraints.NotNull;
 public class InSentDTO {
 
     @NotNull
-    @JsonSetter("_customer_number")     // Numero de Contacto.
-    private String customerNumber;
+    private String customerNumber;      // Numero de Contacto.
 
     @NotNull
-    @JsonSetter("gvpz_documento")       // Nombre del Cliente.
-    private String gvpzDocumento;
+    private String gvpzDocumento;       // Nombre del Cliente.
 
     @NotNull
-    @JsonSetter("gvpz_cuelgue")         // Tipo de Documento.
-    private String gvpzCuelgue;
+    private String gvpzCuelgue;         // Tipo de Documento.
 
     @NotNull
-    @JsonSetter("gvpz_postdiscado")     // Cedula del Cliente.
-    private Long gvpzPostdiscado;
+    private Long gvpzPostdiscado;       // Cedula del Cliente.
 
     @NotNull
     @Email
-    @JsonSetter("gvpz_tipo_cliente")    // Correo e-mail.
-    private String gvpzTipoCliente;
+    private String gvpzTipoCliente;     // Correo e-mail.
 
     @NotNull
-    @JsonSetter("respuesta_1")          // Tipo de producto que desea cancelar (fijo o movil).
-    private String respuestaOne;
+    private String respuestaOne;        // Tipo de producto que desea cancelar (fijo o movil).
 
     @NotNull
-    @JsonSetter("gvpz_ivr_navegacion")  // Categoria de tramite (tramite sobre mis productos).
-    private String gvpzIvrNavegacion;
+    private String gvpzIvrNavegacion;   // Categoria de tramite (tramite sobre mis productos).
 
     @NotNull
-    @JsonSetter("gvpz_suspension")      // Tipologia de la solicitud (cancelacion).
-    private String gvpzSuspension;
+    private String gvpzSuspension;      // Tipologia de la solicitud (cancelacion).
 
-    @JsonSetter("_desired_time")        // Fecha de la solicitud.
-    private String desiredtime;
+    private String desiredtime;         // Fecha de la solicitud.
 
     @NotNull
-    @JsonSetter("codigosalida")         // Para elegir el trunk de salida.
-    private String codigoSalida;
+    private String codigoSalida;        // Para elegir el trunk de salida.
 
     @NotNull
-    @JsonSetter("FIJA_AGENT")           // Para reporteria y debe tener el valor "WCB_UNF".
-    private String fijaAgent;
+    private String fijaAgent;           // Para reporteria y debe tener el valor "WCB_UNF".
+
+    @Override
+    public String toString() {
+        return "InSentDTO(" +
+                "_customer_number='" + customerNumber + '\'' +
+                ", gvpz_documento='" + gvpzDocumento + '\'' +
+                ", gvpz_cuelgue='" + gvpzCuelgue + '\'' +
+                ", gvpz_postdiscado=" + gvpzPostdiscado +
+                ", gvpz_tipo_cliente='" + gvpzTipoCliente + '\'' +
+                ", respuesta_1='" + respuestaOne + '\'' +
+                ", gvpz_ivr_navegacion='" + gvpzIvrNavegacion + '\'' +
+                ", gvpz_suspension='" + gvpzSuspension + '\'' +
+                ", _desired_time='" + desiredtime + '\'' +
+                ", codigosalida='" + codigoSalida + '\'' +
+                ", FIJA_AGENT='" + fijaAgent + '\'' +
+                ')';
+    }
 }
