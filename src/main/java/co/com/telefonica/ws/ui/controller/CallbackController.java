@@ -1,7 +1,7 @@
 package co.com.telefonica.ws.ui.controller;
 
 import co.com.telefonica.ws.businesslogic.ISendNotificationFactory;
-import co.com.telefonica.ws.dto.RequestDTO;
+import co.com.telefonica.ws.dto.request.InSentDTO;
 import co.com.telefonica.ws.dto.response.OutSentDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ public class CallbackController {
 
     @PostMapping
     public ResponseEntity<OutSentDTO> sendCallback(
-            @RequestBody RequestDTO request) {
+            @RequestBody InSentDTO request) {
         if (null == request) {
             var responseError = OutSentDTO.builder()
                     .code("406 NOT_ACCEPTABLE")

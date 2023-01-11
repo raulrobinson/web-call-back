@@ -34,33 +34,8 @@ public class InSentDTO {
     private String respuestaOne;        // Tipo de producto que desea cancelar (fijo o movil).
 
     @NotNull
-    private String gvpzIvrNavegacion;   // Categoria de tramite (tramite sobre mis productos).
-
-    @NotNull
     private String gvpzSuspension;      // Tipologia de la solicitud (cancelacion).
-
-    private String desiredtime;         // Fecha de la solicitud.
 
     @NotNull
     private String codigoSalida;        // Para elegir el trunk de salida.
-
-    @NotNull
-    private String fijaAgent;           // Para reporteria y debe tener el valor "WCB_UNF".
-
-    @Override
-    public String toString() {
-        return "InSentDTO(" +
-                "_customer_number='" + customerNumber + '\'' +
-                ", gvpz_documento='" + gvpzDocumento + '\'' +
-                ", gvpz_cuelgue='" + gvpzCuelgue + '\'' +
-                ", gvpz_postdiscado=" + gvpzPostdiscado +
-                ", gvpz_tipo_cliente='" + gvpzTipoCliente + '\'' +
-                ", respuesta_1='" + respuestaOne + '\'' +
-                ", gvpz_ivr_navegacion='" + gvpzIvrNavegacion + '\'' +
-                ", gvpz_suspension='" + gvpzSuspension + '\'' +
-                ", _desired_time='" + desiredtime + '\'' +
-                ", codigosalida='" + codigoSalida + '\'' +
-                ", FIJA_AGENT='" + fijaAgent + '\'' +
-                ')';
-    }
 }

@@ -1,8 +1,6 @@
 package co.com.telefonica.ws.businesslogic.impl;
 
 import co.com.telefonica.ws.businesslogic.ISendNotificationFactory;
-import co.com.telefonica.ws.dto.RequestDTO;
-import co.com.telefonica.ws.dto.request.InDTO;
 import co.com.telefonica.ws.dto.request.InSentDTO;
 import co.com.telefonica.ws.dto.response.SentGenesysDTO;
 import co.com.telefonica.ws.dto.response.OutSentDTO;
@@ -17,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Objects;
 
 @Slf4j
@@ -35,7 +34,7 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
     private final SimpleDateFormat dateFmt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
     @Override
-    public ResponseEntity<OutSentDTO> sendNotify(RequestDTO request) {
+    public ResponseEntity<OutSentDTO> sendNotify(InSentDTO request) {
 
         var headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -103,22 +102,21 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
         return new ResponseEntity<>(resOut, HttpStatus.OK);
     }
 
-    private InSentDTO buildRequest(RequestDTO request) {
+    private Object buildRequest(InSentDTO request) {
         Date dat = new Date();
-        var reqBuild = new InSentDTO();
-        reqBuild.setCustomerNumber(request.getCustomerNumber());
-        reqBuild.setGvpzSuspension("Cancelacion"); // ************************ refactorizar Cancelacion o Pre a Post.
-        reqBuild.setGvpzIvrNavegacion("Tramite sobre mis productos");
-        reqBuild.setFijaAgent("WCB_UNF");
-        reqBuild.setRespuestaOne(request.getRespuestaOne());
-        reqBuild.setGvpzTipoCliente(request.getGvpzTipoCliente());
-        reqBuild.setGvpzPostdiscado(request.getGvpzPostdiscado());
-        reqBuild.setGvpzCuelgue(request.getGvpzCuelgue());
-        reqBuild.setCodigoSalida(request.getCodigoSalida());
-        reqBuild.setGvpzDocumento(request.getGvpzDocumento());
-        reqBuild.setDesiredtime(dateFmt.format(dat));
+        var req = new HashMap<String, String>();
+        req.put("_customer_number", request.getCustomerNumber());
+        req.put("gvpz_documento", request.getGvpzDocumento());
+        req.put("gvpz_cuelgue", request.getGvpzCuelgue());
+        req.put("gvpz_postdiscado", String.valueOf(request.getGvpzPostdiscado()));
+        req.put("gvpz_tipo_cliente", request.getGvpzTipoCliente());
+        req.put("respuesta_1", request.getRespuestaOne());
+        req.put("gvpz_ivr_navegacion", "Tramite sobre mis productos");
+        req.put("gvpz_suspension", request.getGvpzSuspension());
+        req.put("codigosalida", request.getCodigoSalida());
+        req.put("_desired_time", dateFmt.format(dat));
 
-        return reqBuild;
+        return req;
     }
 
 }
