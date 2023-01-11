@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="70d2f13c-70ac-4d31-9096-6d97d11ae213" name="Changes" comment="endpoint change genesys">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/ISendNotificationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/ISendNotificationFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/impl/GenesysNotificationClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/impl/GenesysNotificationClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/dto/RequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/dto/request/InDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/dto/request/InSentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/dto/request/InSentDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/ui/controller/CallbackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/ui/controller/CallbackController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +82,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673461774468</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="endpoint change genesys">
+      <created>1673466316659</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1673466316659</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -99,12 +101,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/impl/GenesysNotificationClient.java</url>
-          <line>93</line>
+          <line>95</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/impl/GenesysNotificationClient.java</url>
-          <line>118</line>
+          <line>120</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>

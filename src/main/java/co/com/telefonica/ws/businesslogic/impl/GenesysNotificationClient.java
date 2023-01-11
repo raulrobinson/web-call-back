@@ -13,7 +13,9 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.Console;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
@@ -31,7 +33,7 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
     @Autowired
     TelcoConstants telcoConstants;
 
-    private final SimpleDateFormat dateFmt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+    private static final SimpleDateFormat DATE_FMT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
     @Override
     public ResponseEntity<OutSentDTO> sendNotify(InSentDTO request) {
@@ -103,7 +105,6 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
     }
 
     private Object buildRequest(InSentDTO request) {
-        Date dat = new Date();
         var req = new HashMap<String, String>();
         req.put("_customer_number", request.getCustomerNumber());
         req.put("gvpz_documento", request.getGvpzDocumento());
@@ -114,9 +115,15 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
         req.put("gvpz_ivr_navegacion", "Tramite sobre mis productos");
         req.put("gvpz_suspension", request.getGvpzSuspension());
         req.put("codigosalida", request.getCodigoSalida());
-        req.put("_desired_time", dateFmt.format(dat));
+        req.put("_desired_time", formatDate(new Date()));
 
         return req;
+    }
+
+    public String formatDate(Date date) {
+        synchronized(DATE_FMT) {
+            return DATE_FMT.format(date);
+        }
     }
 
 }
