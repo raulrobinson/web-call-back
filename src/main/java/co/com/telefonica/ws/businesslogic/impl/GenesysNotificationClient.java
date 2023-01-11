@@ -115,7 +115,7 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
         req.put("gvpz_ivr_navegacion", "Tramite sobre mis productos");
         req.put("gvpz_suspension", request.getGvpzSuspension());
         req.put("codigosalida", request.getCodigoSalida());
-        req.put("_desired_time", formatDate(new Date()));
+        req.put("_desired_time", String.valueOf(formatDate(new Date())));
 
         return req;
     }
