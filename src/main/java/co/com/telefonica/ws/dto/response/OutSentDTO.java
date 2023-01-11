@@ -1,4 +1,4 @@
-package co.com.telefonica.ws.dto;
+package co.com.telefonica.ws.dto.response;
 
 import lombok.*;
 
@@ -7,7 +7,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResponseOutDTO {
+public class OutSentDTO {
     private String code;
     private String message;
     private Object content;

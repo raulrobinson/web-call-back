@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="70d2f13c-70ac-4d31-9096-6d97d11ae213" name="Changes" comment="endpoint change genesys">
+      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/dto/request/InDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/dto/request/InSentDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/util/TelcoConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/additional-spring-configuration-metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/ISendNotificationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/ISendNotificationFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/impl/GenesysNotificationClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/impl/GenesysNotificationClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/dto/RequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/dto/ResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/dto/response/SentGenesysDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/dto/ResponseOutDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/dto/response/OutSentDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/ui/controller/CallbackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/ui/controller/CallbackController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Jy2r1EUcE9WALUyTo0VfE6US42" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="AppWsApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="co.com.telefonica.ws.AppWsApplication" />
+      <module name="web-call-back" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="co.com.telefonica.ws.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.AppWsApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="70d2f13c-70ac-4d31-9096-6d97d11ae213" name="Changes" comment="" />
+      <created>1673036204099</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1673036204099</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="endpoint change genesys" />
+    <option name="LAST_COMMIT_MESSAGE" value="endpoint change genesys" />
+  </component>
+</project>

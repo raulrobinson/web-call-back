@@ -1,9 +1,11 @@
 package co.com.telefonica.ws.businesslogic.impl;
 
 import co.com.telefonica.ws.businesslogic.ISendNotificationFactory;
-import co.com.telefonica.ws.dto.RequestDTO;
-import co.com.telefonica.ws.dto.ResponseDTO;
-import co.com.telefonica.ws.dto.ResponseOutDTO;
+import co.com.telefonica.ws.dto.request.InDTO;
+import co.com.telefonica.ws.dto.request.InSentDTO;
+import co.com.telefonica.ws.dto.response.SentGenesysDTO;
+import co.com.telefonica.ws.dto.response.OutSentDTO;
+import co.com.telefonica.ws.util.TelcoConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +13,10 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Objects;
 
 @Slf4j
 @Component
@@ -22,41 +28,94 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
     @Value("${url.notification.genesys}")
     private String url;
 
+    @Autowired
+    TelcoConstants telcoConstants;
+
+    private final SimpleDateFormat dateFmt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+
     @Override
-    public ResponseEntity<ResponseOutDTO> sendNotify(RequestDTO request) {
+    public ResponseEntity<OutSentDTO> sendNotify(InDTO request) {
+
         var headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("Authorization", "Go");
+        headers.set("Authorization", "SolucionesAgiles");
 
-        var customerNumber = String.valueOf(request.getCustomerNumber());
-        if (customerNumber.length() < 10) {
-            var responseFail = ResponseOutDTO.builder()
-                    .code("406 NOT_ACCEPTABLE")
-                    .message("Error en la solicitud.")
-                    .content("Los datos suministrados no se ajustan a la definicion.")
-                    .build();
+        String errorMessage = "Error..";
 
-            return new ResponseEntity<>(responseFail, HttpStatus.NOT_ACCEPTABLE);
+        if (request.getCustomerNumber().isBlank()) {
+            log.info("_customer_number: Customer number not found");
+            return telcoConstants.responseFail("406", errorMessage, "_customer_number: Customer number not found..");
+
+        } else if (request.getGvpzDocumento().isBlank()) {
+            log.info("gvpz_documento: Customer name not found");
+            return telcoConstants.responseFail("406", errorMessage, "gvpz_documento: Customer name not found..");
+
+        } else if (request.getCodigoSalida().isBlank()) {
+            log.info("codigosalida: Output code not found");
+            return telcoConstants.responseFail("406", errorMessage, "codigosalida: Output code not found..");
+
+        } else if (request.getGvpzCuelgue().isBlank()) {
+            log.info("gvpz_cuelgue: Document type not found");
+            return telcoConstants.responseFail("406", errorMessage, "gvpz_cuelgue: Document type not found..");
+
+        } else if (request.getGvpzPostdiscado() == 0) {
+            log.info("gvpz_postdiscado: Identification number client not found");
+            return telcoConstants.responseFail("406", errorMessage, "gvpz_postdiscado: Identification number client not found..");
+
+        } else if (request.getGvpzTipoCliente().isBlank()) {
+            log.info("gvpz_tipo_cliente: Email customer not found");
+            return telcoConstants.responseFail("406", errorMessage, "gvpz_tipo_cliente: Email customer not found..");
+
+        } else if (request.getRespuestaOne().isBlank()) {
+            log.info("respuesta_1: Fija or Movil not found");
+            return telcoConstants.responseFail("406", errorMessage, "respuesta_1: Fija or Movil not found..");
         }
 
-        var requestQ = buildRequest(request);
-        var requestEntity = new HttpEntity<>(requestQ, headers);
-        var responseS = genesysClient.exchange(url, HttpMethod.POST, requestEntity, new ParameterizedTypeReference<ResponseDTO>() { });
+        var customerNumber = String.valueOf(request.getCustomerNumber());
 
-        var responseF = ResponseOutDTO.builder()
-                .code(responseS.getStatusCode().toString())
-                .message(request.getCustomerNumber() + ", en breves instantes uno de nuestros asesores le contactara.")
-                .content(responseS)
+        if (Objects.equals(request.getRespuestaOne(), "Movil")) {
+            if (customerNumber.length() < 10) {
+                return telcoConstants.responseFail("406", "Request Failed..", "Phone number invalid length..");
+            }
+            customerNumber = "03" + customerNumber;
+        } else if (Objects.equals(request.getRespuestaOne(), "Fija")){
+            customerNumber = "09" + customerNumber;
+        } else {
+            return telcoConstants.responseFail("406", "Request Failed..", "Phone format number invalid..");
+        }
+
+        log.info(customerNumber);
+
+        var reqBody = buildRequest(request);
+        var reqEntity = new HttpEntity<>(reqBody, headers);
+        var resGenesys = genesysClient.exchange(url, HttpMethod.POST, reqEntity, new ParameterizedTypeReference<SentGenesysDTO>() { });
+
+        var resOut = OutSentDTO.builder()
+                .code(resGenesys.getStatusCode().toString())
+                .message(request.getCustomerNumber() + ", In a few moments one of our agents will contact you..")
+                .content(resGenesys)
                 .build();
 
-        return new ResponseEntity<>(responseF, HttpStatus.OK);
+        return new ResponseEntity<>(resOut, HttpStatus.OK);
     }
 
-    private ResponseDTO buildRequest(RequestDTO request) {
-        var requestW = new ResponseDTO();
-        requestW.setCustomerNumber(request.toString());
+    private InSentDTO buildRequest(InDTO request) {
+        Date dat = new Date();
+        var reqBuild = new InSentDTO();
+        reqBuild.setCustomerNumber(request.getCustomerNumber());
+        reqBuild.setGvpzSuspension("Cancelacion");
+        reqBuild.setGvpzIvrNavegacion("Tramite sobre mis productos");
+        reqBuild.setFijaAgent("WCB_UNF");
+        reqBuild.setRespuestaOne(request.getRespuestaOne());
+        reqBuild.setGvpzTipoCliente(request.getGvpzTipoCliente());
+        reqBuild.setGvpzPostdiscado(request.getGvpzPostdiscado());
+        reqBuild.setGvpzCuelgue(request.getGvpzCuelgue());
+        reqBuild.setCodigoSalida(request.getCodigoSalida());
+        reqBuild.setGvpzDocumento(request.getGvpzDocumento());
+        reqBuild.setDesiredtime(dateFmt.format(dat));
 
-        return requestW;
+        return reqBuild;
     }
+
 }
 

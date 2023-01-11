@@ -1,4 +1,4 @@
-package co.com.telefonica.ws.dto;
+package co.com.telefonica.ws.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ResponseDTO {
+public class SentGenesysDTO {
 
     @JsonProperty("_customer_number")
     private String customerNumber;

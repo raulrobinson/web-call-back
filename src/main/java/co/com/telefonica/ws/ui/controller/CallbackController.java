@@ -1,8 +1,8 @@
 package co.com.telefonica.ws.ui.controller;
 
 import co.com.telefonica.ws.businesslogic.ISendNotificationFactory;
-import co.com.telefonica.ws.dto.RequestDTO;
-import co.com.telefonica.ws.dto.ResponseOutDTO;
+import co.com.telefonica.ws.dto.request.InDTO;
+import co.com.telefonica.ws.dto.response.OutSentDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -22,17 +22,19 @@ public class CallbackController {
     private final ISendNotificationFactory sendNotification;
 
     @PostMapping
-    public ResponseEntity<ResponseOutDTO> sendCallback(
-            @RequestBody RequestDTO request) {
+    public ResponseEntity<OutSentDTO> sendCallback(
+            @RequestBody InDTO request) {
         if (null == request) {
-            var responseError = ResponseOutDTO.builder()
+            var responseError = OutSentDTO.builder()
                     .code("406 NOT_ACCEPTABLE")
                     .message("Error en la solicitud.")
                     .content("Datos invalidos.")
                     .build();
+
             return new ResponseEntity<>(responseError, HttpStatus.NOT_ACCEPTABLE);
         }
 
         return sendNotification.sendNotify(request);
     }
+
 }
