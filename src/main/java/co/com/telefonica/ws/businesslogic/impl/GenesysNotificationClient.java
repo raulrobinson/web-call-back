@@ -31,7 +31,7 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
     @Autowired
     TelcoConstants telcoConstants;
 
-    private static final SimpleDateFormat DATE_FMT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+    private static final SimpleDateFormat DATE_FMT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
     @Override
     public ResponseEntity<OutSentDTO> sendNotify(InSentDTO request) {
@@ -88,6 +88,7 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
         }
 
         log.info(customerNumber);
+        log.info(formatDate(new Date()));
 
         var reqBody = buildRequest(request);
         var reqEntity = new HttpEntity<>(reqBody, headers);
@@ -113,7 +114,7 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
         req.put("gvpz_ivr_navegacion", "Tramite sobre mis productos");
         req.put("gvpz_suspension", request.getGvpzSuspension());
         req.put("codigosalida", request.getCodigoSalida());
-        req.put("_desired_time", String.valueOf(formatDate(new Date())));
+        req.put("_desired_time", formatDate(new Date()));
 
         return req;
     }

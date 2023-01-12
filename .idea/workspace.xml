@@ -96,7 +96,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673467489172</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="endpoint change genesys">
+      <created>1673470396124</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1673470396124</updated>
+    </task>
+    <task id="LOCAL-00006" summary="endpoint change genesys">
+      <created>1673471099491</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1673471099491</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -108,13 +122,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/impl/GenesysNotificationClient.java</url>
-          <line>95</line>
-          <option name="timeStamp" value="9" />
+          <line>118</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/impl/GenesysNotificationClient.java</url>
-          <line>119</line>
-          <option name="timeStamp" value="10" />
+          <line>94</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
