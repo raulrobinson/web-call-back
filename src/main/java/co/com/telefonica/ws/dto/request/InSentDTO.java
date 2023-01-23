@@ -13,29 +13,21 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InSentDTO {
-
     @NotNull
-    private String customerNumber;      // Numero de Contacto.
-
+    private String customerNumber;      // Numero de Contacto. OK
     @NotNull
-    private String gvpzDocumento;       // Nombre del Cliente.
-
+    private String gvpzDocumento;       // Nombre del Cliente. OK
     @NotNull
-    private String gvpzCuelgue;         // Tipo de Documento.
-
+    private String gvpzCuelgue;         // Tipo de Documento. OK
     @NotNull
-    private Long gvpzPostdiscado;       // Cedula del Cliente.
-
+    private Long gvpzPostdiscado;       // Cedula del Cliente. OK
     @NotNull
     @Email
     private String gvpzTipoCliente;     // Correo e-mail.
-
     @NotNull
     private String respuestaOne;        // Tipo de producto que desea cancelar (fijo o movil).
-
     @NotNull
     private String gvpzSuspension;      // Tipologia de la solicitud (cancelacion).
-
     @NotNull
     private String codigoSalida;        // Para elegir el trunk de salida.
 }

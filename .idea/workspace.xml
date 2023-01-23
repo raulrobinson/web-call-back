@@ -7,6 +7,9 @@
     <list default="true" id="70d2f13c-70ac-4d31-9096-6d97d11ae213" name="Changes" comment="endpoint change genesys">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/impl/GenesysNotificationClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/impl/GenesysNotificationClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/dto/request/InSentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/dto/request/InSentDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,10 +39,16 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true"
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.AppWsApplication">
     <configuration name="AppWsApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="co.com.telefonica.ws.AppWsApplication" />
       <module name="web-call-back" />
@@ -49,6 +58,13 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppWsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="web-call-back" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="co.com.telefonica.ws.AppWsApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -67,6 +83,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1673036204099</updated>
+      <workItem from="1674502646514" duration="2681000" />
     </task>
     <task id="LOCAL-00001" summary="endpoint change genesys">
       <created>1673447976116</created>
@@ -113,6 +130,9 @@
     <option name="localTasksCounter" value="7" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="endpoint change genesys" />
     <option name="LAST_COMMIT_MESSAGE" value="endpoint change genesys" />
@@ -122,7 +142,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/impl/GenesysNotificationClient.java</url>
-          <line>118</line>
+          <line>120</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

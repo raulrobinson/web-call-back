@@ -110,11 +110,15 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
         req.put("gvpz_cuelgue", request.getGvpzCuelgue());
         req.put("gvpz_postdiscado", String.valueOf(request.getGvpzPostdiscado()));
         req.put("gvpz_tipo_cliente", request.getGvpzTipoCliente());
-        req.put("respuesta_1", request.getRespuestaOne());
+        req.put("Respuesta_1", request.getRespuestaOne()); // Línea Producto Solicitud
         req.put("gvpz_ivr_navegacion", "Tramite sobre mis productos");
         req.put("gvpz_suspension", request.getGvpzSuspension());
         req.put("codigosalida", request.getCodigoSalida());
         req.put("_desired_time", formatDate(new Date()));
+        req.put("gvpz_ivr_inicio", "Barranquilla"); // Ciudad
+        req.put("gvpz_ult_opcion", ""); // Fecha Selección Categoría
+        req.put("gvpz_llamada_transferida", ""); // Fecha Selección Tipología
+        req.put("FIJA_AGENT", "WCB_UNF"); // Siempre
 
         return req;
     }
