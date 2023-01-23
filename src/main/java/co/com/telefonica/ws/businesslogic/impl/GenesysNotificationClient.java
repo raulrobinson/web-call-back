@@ -116,8 +116,8 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
         req.put("codigosalida", request.getCodigoSalida());
         req.put("_desired_time", formatDate(new Date()));
         req.put("gvpz_ivr_inicio", "Barranquilla"); // Ciudad
-        req.put("gvpz_ult_opcion", ""); // Fecha Selección Categoría
-        req.put("gvpz_llamada_transferida", ""); // Fecha Selección Tipología
+        req.put("gvpz_ult_opcion", "2023-01-23T15:40:10.954Z"); // Fecha Selección Categoría
+        req.put("gvpz_llamada_transferida", "2023-01-23T15:40:10.954Z"); // Fecha Selección Tipología
         req.put("FIJA_AGENT", "WCB_UNF"); // Siempre
 
         return req;

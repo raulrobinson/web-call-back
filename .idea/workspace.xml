@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70d2f13c-70ac-4d31-9096-6d97d11ae213" name="Changes" comment="endpoint change genesys">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/impl/GenesysNotificationClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/impl/GenesysNotificationClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/dto/request/InSentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/dto/request/InSentDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+    <list default="true" id="70d2f13c-70ac-4d31-9096-6d97d11ae213" name="Changes" comment="Inclusion de nuevas Keys sobre Genesys (14)">
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +79,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1673036204099</updated>
-      <workItem from="1674502646514" duration="2681000" />
+      <workItem from="1674502646514" duration="3176000" />
     </task>
     <task id="LOCAL-00001" summary="endpoint change genesys">
       <created>1673447976116</created>
@@ -127,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673471099491</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Inclusion de nuevas Keys sobre Genesys (14)">
+      <created>1674506018117</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1674506018117</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -135,14 +138,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="endpoint change genesys" />
-    <option name="LAST_COMMIT_MESSAGE" value="endpoint change genesys" />
+    <MESSAGE value="Inclusion de nuevas Keys sobre Genesys (14)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inclusion de nuevas Keys sobre Genesys (14)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/co/com/telefonica/ws/businesslogic/impl/GenesysNotificationClient.java</url>
-          <line>120</line>
+          <line>122</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
