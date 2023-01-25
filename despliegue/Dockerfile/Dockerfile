@@ -7,6 +7,6 @@
 # ------------------------------------------------------------------------
 
 FROM openjdk:11-jre-slim-buster
-RUN apt-get update && apt-get install curl -y && apt install net-tools -y && apt install iputils-ping -y
+RUN apt-get update && apt-get install curl -y
 COPY ./src/web-call-back.jar /opt/microservice/web-call-back.jar
 ENTRYPOINT ["java","-Duser.timezone=CO","-jar","/opt/microservice/web-call-back.jar"]
