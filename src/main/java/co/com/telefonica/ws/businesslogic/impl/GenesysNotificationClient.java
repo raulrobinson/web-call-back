@@ -110,15 +110,15 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
         req.put("gvpz_cuelgue", request.getGvpzCuelgue());
         req.put("gvpz_postdiscado", String.valueOf(request.getGvpzPostdiscado()));
         req.put("gvpz_tipo_cliente", request.getGvpzTipoCliente());
-        req.put("Respuesta_1", request.getRespuestaOne()); // Línea Producto Solicitud
-        req.put("gvpz_ivr_navegacion", "Tramite sobre mis productos");
+        req.put("Respuesta_1", request.getRespuestaOne());                          // Línea Producto Solicitud.
+        req.put("gvpz_ivr_navegacion", "Tramite sobre mis productos");              // Siempre.
         req.put("gvpz_suspension", request.getGvpzSuspension());
         req.put("codigosalida", request.getCodigoSalida());
-        req.put("_desired_time", formatDate(new Date()));
-        req.put("gvpz_ivr_inicio", "Barranquilla"); // Ciudad
-        req.put("gvpz_ult_opcion", "2023-01-23T15:40:10.954Z"); // Fecha Selección Categoría
-        req.put("gvpz_llamada_transferida", "2023-01-23T15:40:10.954Z"); // Fecha Selección Tipología
-        req.put("FIJA_AGENT", "WCB_UNF"); // Siempre
+        req.put("_desired_time", formatDate(new Date()));                           // Fecha y Hora NOW().
+        req.put("gvpz_ivr_inicio", request.getGvpzIvrInicio());                     // Ciudad.
+        req.put("gvpz_ult_opcion", request.getGvpzUltOpcion());                     // Fecha Selección Categoría.
+        req.put("gvpz_llamada_transferida", request.getGvpzLlamadaTransferida());   // Fecha Selección Tipología.
+        req.put("FIJA_AGENT", "WCB_UNF");                                           // Siempre.
 
         return req;
     }

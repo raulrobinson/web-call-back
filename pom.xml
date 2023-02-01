@@ -15,7 +15,7 @@
 	<artifactId>web-call-back</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>web-call-back</name>
-	<description>Microservicio que genera una llamada de un asesor al cliente desde Genesys.</description>
+	<description>Microservice que genera una llamada de un asesor al cliente desde Genesys.</description>
 	<packaging>jar</packaging>
 
 	<properties>
@@ -95,6 +95,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<!-- Spice up your java: Automatic Resource Management, automatic generation of getters, setters, equals, hashCode and toString -->
 		<dependency>
