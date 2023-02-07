@@ -71,20 +71,20 @@ public class GenesysNotificationClient implements ISendNotificationFactory {
             return telcoConstants.responseFail("406", errorMessage, "gvpz_suspension: Reason for procedure not found..");
 
         } else if (request.getRespuestaOne().isBlank()) {
-            log.info("respuesta_1: Fija or Movil not found");
-            return telcoConstants.responseFail("406", errorMessage, "respuesta_1: Fija or Movil not found..");
+            log.info("Respuesta_1: FIJO or MOVIL not found");
+            return telcoConstants.responseFail("406", errorMessage, "Respuesta_1: FIJO or MOVIL not found..");
         }
 
         var customerNumber = String.valueOf(request.getCustomerNumber());
 
-        if (Objects.equals(request.getRespuestaOne(), "Movil")) {
+        if (Objects.equals(request.getRespuestaOne(), "MOVIL")) {
             if (customerNumber.length() < 10) {
-                return telcoConstants.responseFail("406", "Request Failed..", "Phone number invalid length..");
+                return telcoConstants.responseFail("406", "Request Failed..", "Request parameters invalid..");
             }
-        } else if (Objects.equals(request.getRespuestaOne(), "Fija")){
+        } else if (Objects.equals(request.getRespuestaOne(), "FIJO")){
             customerNumber = String.valueOf(request.getCustomerNumber());
         } else {
-            return telcoConstants.responseFail("406", "Request Failed..", "Phone format number invalid..");
+            return telcoConstants.responseFail("406", "Request Failed..", "Request parameters invalid..");
         }
 
         log.info(customerNumber);
