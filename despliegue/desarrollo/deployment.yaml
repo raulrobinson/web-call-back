@@ -56,6 +56,26 @@ objects:
                 requests:
                   cpu: 10m
                   memory: 10Mi
+              readinessProbe:
+                httpGet:
+                  path: /actuator/
+                  port: 8087
+                  scheme: HTTP
+                failureThreshold: 3
+                initialDelaySeconds: 20
+                periodSeconds: 10
+                successThreshold: 1
+                timeoutSeconds: 120
+              livenessProbe:
+                httpGet:
+                  path: /actuator/
+                  port: 8087
+                  scheme: HTTP
+                failureThreshold: 2
+                initialDelaySeconds: 60
+                periodSeconds: 10
+                successThreshold: 1
+                timeoutSeconds: 120
           dnsPolicy: ClusterFirst
           restartPolicy: Always
           schedulerName: default-scheduler
@@ -72,9 +92,12 @@ objects:
       namespace: genesys
     spec:
       ports:
-        - name: http-web
-          port: 8080
-          protocol: TCP
+      # --- start --- #
+      - port: 8080
+        protocol: TCP
+        targetPort: 8080
+        name: web
+      # --- end --- #
       selector:
         deploymentconfig: web-call-back
       sessionAffinity: None
@@ -100,6 +123,24 @@ objects:
             target:
               averageUtilization: 80
               type: Utilization
+  # --- start --- #
+  - apiVersion: monitoring.coreos.com/v1
+    kind: ServiceMonitor
+    metadata:
+      labels:
+        k8s-app: evaluation-number-prefixes
+      name: evaluation-number-prefixes
+      namespace: kernel
+    spec:
+      endpoints:
+        - interval: 10s
+          path: /actuator/prometheus
+          port: 8080-tcp
+          scheme: http
+      selector:
+        matchLabels:
+          app: evaluation-number-prefixes
+  # --- end --- #
   - apiVersion: networking.istio.io/v1beta1
     kind: DestinationRule
     metadata:
