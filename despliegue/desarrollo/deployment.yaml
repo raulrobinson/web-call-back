@@ -92,12 +92,10 @@ objects:
       namespace: genesys
     spec:
       ports:
-      # --- start --- #
       - port: 8080
         protocol: TCP
         targetPort: 8080
         name: web
-      # --- end --- #
       selector:
         deploymentconfig: web-call-back
       sessionAffinity: None
@@ -123,14 +121,13 @@ objects:
             target:
               averageUtilization: 80
               type: Utilization
-  # --- start --- #
   - apiVersion: monitoring.coreos.com/v1
     kind: ServiceMonitor
     metadata:
       labels:
-        k8s-app: evaluation-number-prefixes
-      name: evaluation-number-prefixes
-      namespace: kernel
+        k8s-app: web-call-back
+      name: web-call-back
+      namespace: genesys
     spec:
       endpoints:
         - interval: 10s
@@ -139,8 +136,7 @@ objects:
           scheme: http
       selector:
         matchLabels:
-          app: evaluation-number-prefixes
-  # --- end --- #
+          app: web-call-back
   - apiVersion: networking.istio.io/v1beta1
     kind: DestinationRule
     metadata:
@@ -151,6 +147,39 @@ objects:
       trafficPolicy:
         tls:
           mode: ISTIO_MUTUAL
+  - apiVersion: route.openshift.io/v1
+    kind: Route
+    metadata:
+      name: web-call-back
+      namespace: genesys
+      labels:
+        app: web-call-back
+        app.kubernetes.io/component: web-call-back
+        app.kubernetes.io/instance: web-call-back
+        app.kubernetes.io/name: web-call-back
+        app.kubernetes.io/part-of: web-call-back-app
+        app.openshift.io/runtime: java
+        app.openshift.io/runtime-version: openjdk-17-ubi8
+      annotations:
+        openshift.io/host.generated: 'true'
+    spec:
+      host: web-call-back-tutorial-metrics.apps.adesaocp1.nh.inet
+      to:
+        kind: Service
+        name: web-call-back
+        weight: 100
+      port:
+        targetPort: 8080-tcp
+      tls:
+        termination: edge
+        insecureEdgeTerminationPolicy: Redirect
+      wildcardPolicy: None
+    status:
+      ingress:
+        - host: web-call-back-tutorial-metrics.apps.adesaocp1.nh.inet
+          routerName: default
+          wildcardPolicy: None
+          routerCanonicalHostname: router-default.apps.adesaocp1.nh.inet
   - apiVersion: networking.istio.io/v1beta1
     kind: VirtualService
     metadata:
